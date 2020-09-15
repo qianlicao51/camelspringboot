@@ -8,6 +8,7 @@ public class CamelspringbootApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CamelspringbootApplication.class, args);
+
     }
 
 }
