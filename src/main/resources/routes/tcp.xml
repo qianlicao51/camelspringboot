@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <!-- 此方式以文本换行符接受 -->
+    <route id="tcp555">
+        <!-- textline为true 需要换行符才能真确识别到数据 -->
+        <from uri="mina:tcp://localhost:5550?textline=true&amp;codec=#prefixedStringCodecFactory"/>
+        <process ref="channelReviveProcess"/>
+        <to uri="bean:myTCPOrderHandler"/>
+        <!--<to uri="log:out"/>-->
+    </route>
+</routes>
