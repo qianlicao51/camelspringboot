@@ -3,9 +3,17 @@
     <!-- 此方式以文本换行符接受 -->
     <route id="tcp555">
         <!-- textline为true 需要换行符才能真确识别到数据 -->
-        <from uri="mina:tcp://localhost:5550?textline=true&amp;codec=#prefixedStringCodecFactory"/>
+        <from uri="mina:tcp://localhost:5551?textline=true&amp;codec=#prefixedStringCodecFactory"/>
         <process ref="channelReviveProcess"/>
         <to uri="bean:myTCPOrderHandler"/>
         <!--<to uri="log:out"/>-->
+    </route>
+
+
+    <route id="tco666">
+        <from uri="mina:tcp://localhost:23456"/>
+        <!-- 切面 -->
+        <process ref="myProcessor"/>
+        <to uri="bean:myTCPOrderHandler"/>
     </route>
 </routes>

@@ -8,79 +8,78 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * @Title:  PrefixedStringCodecFactory.java
- *
+ * @Title: PrefixedStringCodecFactory.java
  */
 @Component("prefixedStringCodecFactory")
 public class PrefixedStringCodecFactory implements ProtocolCodecFactory {
-	private String encoding = "UTF-8";
-	private boolean lenthIncludeSelf = true;
+    private String encoding = "UTF-8";
+    private boolean lenthIncludeSelf = true;
 
-	private final PrefixedStringEncoder encoder;
+    private final PrefixedStringEncoder encoder;
 
-	private final PrefixedStringDecoder decoder;
+    private final PrefixedStringDecoder decoder;
 
-	public PrefixedStringCodecFactory() {
-		encoder = new PrefixedStringEncoder();
-		encoder.setEncoding(encoding);
-		decoder = new PrefixedStringDecoder();
-		decoder.setEncoding(encoding);
-		encoder.setLenthIncludeSelf(lenthIncludeSelf);
-		decoder.setLenthIncludeSelf(lenthIncludeSelf);
-	}
+    public PrefixedStringCodecFactory() {
+        encoder = new PrefixedStringEncoder();
+        encoder.setEncoding(encoding);
+        decoder = new PrefixedStringDecoder();
+        decoder.setEncoding(encoding);
+        encoder.setLenthIncludeSelf(lenthIncludeSelf);
+        decoder.setLenthIncludeSelf(lenthIncludeSelf);
+    }
 
-	public ProtocolEncoder getEncoder() throws Exception {
-		return encoder;
-	}
+    public ProtocolEncoder getEncoder() throws Exception {
+        return encoder;
+    }
 
-	public ProtocolDecoder getDecoder() throws Exception {
-		return decoder;
-	}
+    public ProtocolDecoder getDecoder() throws Exception {
+        return decoder;
+    }
 
-	public void setDecoderPrefixLength(int prefixLength) {
-		decoder.setPrefixLength(prefixLength);
-	}
+    public void setDecoderPrefixLength(int prefixLength) {
+        decoder.setPrefixLength(prefixLength);
+    }
 
-	public void setEncoderPrefixLength(int prefixLength) {
-		encoder.setPrefixLength(prefixLength);
-	}
+    public void setEncoderPrefixLength(int prefixLength) {
+        encoder.setPrefixLength(prefixLength);
+    }
 
-	public int getDecoderPrefixLength() {
-		return decoder.getPrefixLength();
-	}
+    public int getDecoderPrefixLength() {
+        return decoder.getPrefixLength();
+    }
 
-	public int getEncoderPrefixLength() {
-		return encoder.getPrefixLength();
-	}
+    public int getEncoderPrefixLength() {
+        return encoder.getPrefixLength();
+    }
 
-	public String getEncoding() {
-		return encoding;
-	}
+    public String getEncoding() {
+        return encoding;
+    }
 
-	public void setEncoding(String encoding) {
-		this.encoding = encoding;
-		encoder.setEncoding(encoding);
-		decoder.setEncoding(encoding);
-	}
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+        encoder.setEncoding(encoding);
+        decoder.setEncoding(encoding);
+    }
 
-	@Override
-	public ProtocolDecoder getDecoder(IoSession arg0) throws Exception {
-		return getDecoder();
-	}
+    @Override
+    public ProtocolDecoder getDecoder(IoSession arg0) throws Exception {
+        return getDecoder();
+    }
 
-	@Override
-	public ProtocolEncoder getEncoder(IoSession arg0) throws Exception {
-		return getEncoder();
-	}
+    @Override
+    public ProtocolEncoder getEncoder(IoSession arg0) throws Exception {
+        return getEncoder();
+    }
 
-	public boolean isLenthIncludeSelf() {
-		return lenthIncludeSelf;
-	}
+    public boolean isLenthIncludeSelf() {
+        return lenthIncludeSelf;
+    }
 
-	public void setLenthIncludeSelf(boolean lenthIncludeSelf) {
-		this.lenthIncludeSelf = lenthIncludeSelf;
-		encoder.setLenthIncludeSelf(lenthIncludeSelf);
-		decoder.setLenthIncludeSelf(lenthIncludeSelf);
-	}
+    public void setLenthIncludeSelf(boolean lenthIncludeSelf) {
+        this.lenthIncludeSelf = lenthIncludeSelf;
+        encoder.setLenthIncludeSelf(lenthIncludeSelf);
+        decoder.setLenthIncludeSelf(lenthIncludeSelf);
+    }
 
 }
