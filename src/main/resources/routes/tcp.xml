@@ -2,7 +2,7 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
     <!-- 此方式以文本换行符接受 -->
     <route id="tcp555">
-        <!-- textline为true 需要换行符才能真确识别到数据 -->
+        <!-- textline为true 需要换行符才能真确识别到数据 编码前面需要加# -->
         <from uri="mina:tcp://localhost:5551?textline=true&amp;codec=#prefixedStringCodecFactory"/>
         <process ref="channelReviveProcess"/>
         <to uri="bean:myTCPOrderHandler"/>
