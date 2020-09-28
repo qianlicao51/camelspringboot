@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author study
@@ -26,7 +27,7 @@ public class TcpUtils {
      * @throws IOException
      */
     public static void postReNull(String ip, int port, String data) throws IOException {
-        postReNullEncode(ip, port, data, "UTF-8");
+        postReNullEncode(ip, port, data, StandardCharsets.UTF_8.name());
     }
 
     public static void postReNullEncode(String ip, int port, String data, String encoding) throws IOException {
@@ -74,7 +75,7 @@ public class TcpUtils {
      * @throws IOException
      */
     public static String post(String ip, int port, String data) throws IOException {
-        return postCharsets(ip, port, data, "UTF-8");
+        return postCharsets(ip, port, data, StandardCharsets.UTF_8.name());
 
     }
 
@@ -171,7 +172,8 @@ public class TcpUtils {
             socket = new Socket();
             socket.connect(new InetSocketAddress(ip, port), timeOut);
             socket.setSoTimeout(timeOut);
-            byte[] msg = tradeMessage.getBytes("UTF-8");
+            byte[] msg = tradeMessage.getBytes(StandardCharsets.UTF_8.name());
+
             dos = new DataOutputStream(socket.getOutputStream());
             dos.write(msg);
             dos.flush();
@@ -358,7 +360,6 @@ public class TcpUtils {
             is.read(message);// 接收服务器的响应信息
             mes = HexStrConver.byte2HexStr(message);// |474
         } catch (Exception e) {
-            // e.printStackTrace();
             log.error("error equ_ip:{}|{}", ip, e.getMessage());
             throw e;
         } finally {
@@ -383,7 +384,7 @@ public class TcpUtils {
             socket = new Socket();
             socket.connect(new InetSocketAddress(ip, port), timeOut);
             socket.setSoTimeout(timeOut);
-            byte[] msg = data.getBytes("UTF-8");
+            byte[] msg = data.getBytes(StandardCharsets.UTF_8.name());
             dos = new DataOutputStream(socket.getOutputStream());
             dos.write(msg);
             dos.flush();
