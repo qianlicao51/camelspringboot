@@ -82,7 +82,7 @@ public class SendData {
 		System.out.println("弓".getBytes("UTF-8").length);// 3
 		System.out.println("弓".getBytes("GBK").length);// 2
 		System.out.println(sendContext);
-		String sendDataByTcp = sendDataByTcp("192.168.1.24", 9000, JSON.toJSONString(sendContext) + "\r\n");
+		String sendDataByTcp = sendDataByTcp("127.0.0.1", 5550, JSON.toJSONString(sendContext) + "\r\n");
 		System.out.println(sendDataByTcp);
 		System.out.println("-----------------");
 	}

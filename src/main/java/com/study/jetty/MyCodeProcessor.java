@@ -19,7 +19,7 @@ import java.nio.file.Paths;
  * @version 1.0
  * @date 2020/9/15 21:55
  */
-@Component("myCode")
+@Component("myCodeProcessor")
 public class MyCodeProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {

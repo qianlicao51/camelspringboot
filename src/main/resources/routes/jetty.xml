@@ -2,7 +2,7 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
     <route>
         <from uri="jetty:http://0.0.0.0:85/myapp/myservice/?sessionSupport=true"/>
-        <removeHeaders pattern="CamelHttp*" />
-        <to uri="bean:myCode" />
+        <!--<removeHeaders pattern="CamelHttp*" />-->
+        <to uri="bean:myCodeProcessor" />
     </route>
 </routes>
