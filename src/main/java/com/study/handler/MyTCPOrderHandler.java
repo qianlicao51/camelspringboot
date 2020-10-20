@@ -3,7 +3,11 @@ package com.study.handler;
 import org.apache.camel.Exchange;
 import org.apache.camel.Handler;
 import org.apache.camel.Message;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author study
@@ -16,9 +20,18 @@ public class MyTCPOrderHandler {
     public void handler(Exchange exchange) {
         Message in = exchange.getIn();
         String headbody = in.getBody(String.class);
-        System.out.println("接受到的数据：" + headbody);
+        // System.out.println("接受到的数据：" + headbody);
+
+
+        System.out.println(String.format("%s 线程是%s", "MyTCPOrderHandler", Thread.currentThread().getName()));
+        System.out.println(StringUtils.repeat("--", "*", 30));
         // return "Order: OK";
-        in.setBody(System.currentTimeMillis() + headbody);
+
+        List<String> data = new ArrayList<>();
+
+        data.add(Thread.currentThread().getName());
+
+        in.setBody(System.currentTimeMillis() + headbody + Thread.currentThread().getName());
     }
 
 
