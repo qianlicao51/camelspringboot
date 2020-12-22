@@ -13,7 +13,7 @@
     <route id="tco666">
         <from uri="mina:tcp://0.0.0.0:23456"/>
         <!-- 切面 -->
-        <process ref="myProcessor"/>
-        <to uri="bean:myTCPOrderHandler"/>
+        <!--<process ref="myProcessor"/>-->
+        <to uri="bean:myTCPOrderHandler2"/>
     </route>
 </routes>
