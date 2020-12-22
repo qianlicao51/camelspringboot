@@ -18,6 +18,11 @@ public class MyTCPOrderHandler {
     public synchronized void handler(Exchange exchange) {
         Message in = exchange.getIn();
         String headbody = in.getBody(String.class);
+        // System.out.println("接受到的数据：" + headbody);
+
+
+        System.out.println(String.format("%s 线程是%s", "MyTCPOrderHandler", Thread.currentThread().getName()));
+        System.out.println(StringUtils.repeat("--", "*", 30));
         System.out.println("接受到的数据：" + headbody);
         for (int i = 0; i < 10; i++) {
             System.out.println(Thread.currentThread().getName() + headbody);
@@ -29,7 +34,12 @@ public class MyTCPOrderHandler {
 
         }
         // return "Order: OK";
-        in.setBody(System.currentTimeMillis() + headbody);
+
+        List<String> data = new ArrayList<>();
+
+        data.add(Thread.currentThread().getName());
+
+        in.setBody(System.currentTimeMillis() + headbody + Thread.currentThread().getName());
     }
 
 

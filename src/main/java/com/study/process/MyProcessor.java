@@ -23,13 +23,15 @@ public class MyProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         Message in = exchange.getIn();
         String body = in.getBody(String.class);
-        System.out.println("process receive"+body);
+        // System.out.println("process receive" + body);
         exchange.getOut().setBody("Bye " + body);
 
         Map<String, Object> headers = in.getHeaders();
         headers.forEach((k, v) -> {
-            System.out.println(k + "|" + v);
+            //System.out.println(k + "|" + v);
         });
+
+        System.out.println(String.format("%s 线程是%s", "MyProcessor", Thread.currentThread().getName()));
         //exchange.getOut().setHeader(MinaConstants.MINA_CLOSE_SESSION_WHEN_COMPLETE, true);
     }
 }
