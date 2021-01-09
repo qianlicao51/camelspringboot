@@ -41,7 +41,7 @@ public class ThreadMessageHandler2 implements MessageHandler {
 
         System.out.println(StringUtils.repeat("--", "*", 30));
 
-        //直接返回的情况
+        //直接返回的情况| 说明 看图片
         if ((MAP.containsKey(body) && StringUtils.equalsAnyIgnoreCase(ConfigUtils.CMD_START, cmd))
                 || (StringUtils.equalsAnyIgnoreCase(ConfigUtils.CMD_STOP, cmd) && !MAP.containsKey(body))) {
             //业务无需控制，直接返回
