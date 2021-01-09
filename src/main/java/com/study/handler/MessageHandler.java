@@ -15,5 +15,5 @@ public interface MessageHandler {
      * @param exchange 消息
      */
     @Handler
-    void handler(Exchange exchange);
+    void handler(Exchange exchange) throws InterruptedException;
 }

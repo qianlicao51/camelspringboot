@@ -26,7 +26,6 @@ public class ThreadMessageHandler2 implements MessageHandler {
      */
     @Override
     public void handler(Exchange exchange) {
-
         Message in = exchange.getIn();
         String body = in.getBody(String.class);
         final Thread currentThread = Thread.currentThread();
