@@ -36,17 +36,18 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
             <version>${camel.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
         <!-- camel组件 -->
+        <!-- 这个组件中包含 camel-spring-boot-starter -->
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-mina-starter</artifactId>
