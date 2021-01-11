@@ -20,8 +20,12 @@
     <!-- 多线程处理业务 打断测试 -->
     <route id="tcpmulti">
         <from uri="mina:tcp://0.0.0.0:8050"/>
-        <!-- 切面 -->
-        <!--<process ref="myProcessor"/>-->
         <to uri="bean:threadMessageHandler2"/>
+    </route>
+
+    <!-- 强制回收连接 -->
+    <route id="tcpKeepAliveFilter">
+        <from uri="mina:tcp://0.0.0.0:7030?filters=#keepAliveFilter&amp;maximumPoolSize=20&amp;decoderMaxLineLength=5&amp;codec=#prefixedStringCodecFactory"/>
+        <to uri="bean:myTCPOrderHandlerOrginal"/>
     </route>
 </routes>

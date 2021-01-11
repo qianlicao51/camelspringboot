@@ -32,6 +32,7 @@ public class PrefixedStringEncoder extends ProtocolEncoderAdapter {
 
 	private boolean lenthIncludeSelf = true;
 
+	@Override
 	public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
 		String value = "";
 		if (message instanceof byte[]) {
