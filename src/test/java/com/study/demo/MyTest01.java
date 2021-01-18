@@ -15,6 +15,7 @@ public class MyTest01 {
         ExecutorService service = Executors.newCachedThreadPool();
         for (int i = 0; i < 10; i++) {
             service.submit(new MyRunnable(i));
+            service.execute(new MyRunnable(i));
         }
         /*service.execute(
             () -> {

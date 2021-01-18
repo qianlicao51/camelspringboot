@@ -2,6 +2,7 @@ package com.study;
 
 import net.sf.json.JSONObject;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -53,5 +54,10 @@ public class Json {
         new Thread(() -> {
             new Json().synObj();
         }).start();
+
+        Random random = new Random(47);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(random.nextBoolean());
+        }
     }
 }
