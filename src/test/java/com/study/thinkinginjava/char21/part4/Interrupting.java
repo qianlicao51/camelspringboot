@@ -95,6 +95,9 @@ public class Interrupting {
 
     public static void main(String[] args) throws InterruptedException {
 
+        /**
+         * sleep 是可中断的阻塞，而IO和 synchronized是不可中断的阻塞。
+         */
         test(new SleepBlocked());
         System.out.println();
         test(new IOBlocked(System.in));
