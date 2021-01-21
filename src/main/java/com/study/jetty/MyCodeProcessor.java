@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 public class MyCodeProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
-
+        //Session的支持 https://camel.apache.org/components/latest/jetty-component.html#_session_support
         //获取HTTP session|官网例子https://camel.apache.org/components/latest/jetty-component.html
         HttpSession session = exchange.getIn(HttpMessage.class).getRequest().getSession();
 

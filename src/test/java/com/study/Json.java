@@ -35,29 +35,32 @@ public class Json {
         }
     }
 
-    synchronized void synObj() {
-        System.out.println("synObj");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
 
         // 打印:1
         System.out.println(POOL_END);
-        new Thread(() -> {
-            synStatic();
-        }).start();
+
         new Thread(() -> {
             new Json().synObj();
+        }).start();
+        new Thread(() -> {
+            synStatic();
         }).start();
 
         Random random = new Random(47);
         for (int i = 0; i < 10; i++) {
             System.out.println(random.nextBoolean());
+        }
+    }
+
+    void synObj() {
+        synchronized (this.getClass()) {
+            System.out.println("synObj");
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

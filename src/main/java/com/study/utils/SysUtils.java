@@ -7,28 +7,30 @@ import org.joda.time.DateTime;
  */
 public class SysUtils {
 
-	/**
-	 *
-	 * @return YYYY-MM-dd HH:mm:ss
-	 */
-	public static String getDate() {
+    /**
+     * @return YYYY-MM-dd HH:mm:ss
+     */
+    public static String getDate() {
+        return new DateTime().toString("yyyy-MM-dd HH:mm:ss");
+    }
 
-		return new DateTime().toString("yyyy-MM-dd HH:mm:ss");
-	}
+    /**
+     * @return YYYY-MM-dd-HH-mm-ss
+     */
+    public static String getDateYmd() {
+        return new DateTime().toString("yyyy-MM-dd-HH-mm-ss");
+    }
 
-	/**
-	 *
-	 * @return YYYY-MM-dd-HH-mm-ss
-	 */
-	public static String getDateYmd() {
-		return new DateTime().toString("yyyy-MM-dd-HH-mm-ss");
-	}
+    /**
+     * yyyy-MM-dd
+     *
+     * @return yyyy-MM-dd
+     */
+    public static String getDateYmD() {
+        return new DateTime().toString("yyyy-MM-dd");
+    }
 
-	public static String getDateYmD() {
-		return new DateTime().toString("yyyy-MM-dd");
-	}
-
-	public static void main(String[] args) {
-		System.out.println(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
-	}
+    public static void main(String[] args) {
+        System.out.println(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
+    }
 }
