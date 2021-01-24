@@ -22,15 +22,22 @@ import static java.util.stream.Collectors.toList;
  */
 @Slf4j(topic = "c.ExerciseSell")
 public class ExerciseSell {
+
     private final static Random random = new Random(System.currentTimeMillis());
     private final static ExecutorService executorService = Executors.newFixedThreadPool(8);
 
+    /**
+     * cmd for循环 |for /l %x in (1, 1, 20) do java -jar utils-0.0.1-SNAPSHOT.jar
+     */
     public static void main(String[] args) throws InterruptedException {
         sell();
-        // sell2();
+        // generalSell();
     }
 
-    private static void sell2() throws InterruptedException {
+    /**
+     * 线程不安全
+     */
+    private static void generalSell() throws InterruptedException {
         final TicketWindow2 window = new TicketWindow2(1000);
         List<Thread> threadList = new ArrayList<>();
         List<Integer> amountLists = new Vector<>();
@@ -52,28 +59,25 @@ public class ExerciseSell {
         }
         log.debug("余票{}", window.getCount());
         log.debug("卖出{}", amountLists.stream().mapToInt(i -> i).sum());
-        Integer sum = 0;
-
     }
 
     private static void sell() {
         // 模拟多人买票
         final TicketWindow2 window = new TicketWindow2(1000);
-        final Stream<CompletableFuture<Integer>> completableFutureStream = IntStream.rangeClosed(1, 2000).mapToObj(i ->
-                CompletableFuture.supplyAsync(() ->
-                                window.sell(random.nextInt(5) + 1)
-                        , executorService));
-
-        final List<Integer> collect = completableFutureStream.map(CompletableFuture::join).collect(toList());
+        final Stream<CompletableFuture<Integer>> completableFutureStream = IntStream.rangeClosed(1, 2000).mapToObj(i -> //
+                CompletableFuture.supplyAsync(//
+                        () -> window.sell(random.nextInt(5) + 1), //
+                        executorService));
+        //这样永远不会有线程安全问题，需要并发(parallel)
+        final List<Integer> collect = completableFutureStream.parallel().map(CompletableFuture::join).collect(toList());
         log.debug("卖出 {}", collect.stream().mapToInt(i -> i).sum());
-        //统计卖出票数 和剩余 票数
+        // 统计卖出票数 和剩余 票数
         log.debug("余票 {}", window.getCount());
         executorService.shutdown();
     }
 }
 
-
-//售票
+// 售票
 @Slf4j(topic = "windown")
 class TicketWindow2 {
     private int count;
