@@ -2,13 +2,15 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
     <route>
         <from uri="jetty:http://0.0.0.0:85/myapp/myservice/?sessionSupport=true"/>
-        <!--<removeHeaders pattern="CamelHttp*" />-->
+        <removeHeaders pattern="CamelHttp*"/>
+
         <to uri="bean:myCodeProcessor"/>
     </route>
 
     <route>
         <from uri="jetty:http://0.0.0.0:86/bayonet/getCaptureInfo"/>
         <removeHeaders pattern="CamelHttp*"/>
+        <process ref="httpReviveProcess"/>
         <to uri="bean:httpHandle"/>
     </route>
 </routes>

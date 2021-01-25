@@ -1,4 +1,4 @@
-package com.study.process;
+package com.study.jetty;
 
 import com.alibaba.fastjson.JSONObject;
 import com.study.utils.ConfigUtils;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 
-@Component("channelReviveProcess")
-public class ChannelReviveProcess implements Processor {
+@Component("httpReviveProcess")
+public class HttpReviveProcess implements Processor {
 
     @Override
     public void process(Exchange exchange) {
@@ -40,7 +40,7 @@ public class ChannelReviveProcess implements Processor {
             e.printStackTrace();
         } finally {
             System.out.println(SysUtils.getDate() + "|" + obj.toJSONString());
-            in.setBody(obj.toString());
+            in.setBody(headbody);
         }
     }
 }
