@@ -8,7 +8,7 @@
     </route>
 
     <route>
-        <from uri="jetty:http://0.0.0.0:86/bayonet/getCaptureInfo"/>
+        <from uri="jetty:http://0.0.0.0:86/bayonet/getCaptureInfo?continuationTimeout=3000"/>
         <removeHeaders pattern="CamelHttp*"/>
         <process ref="httpReviveProcess"/>
         <to uri="bean:httpHandle"/>
