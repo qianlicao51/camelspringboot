@@ -7,7 +7,8 @@ package com.study.goroutinue;
  */
 public class Demo {
     public static void main(String[] args) {
-        for (int i = 0; i < 1_000_000; i++) {
+
+        for (int i = 0; i < 100; i++) {
             new Thread(() -> {
                 try {
                     Thread.sleep(100_000);
@@ -15,6 +16,7 @@ public class Demo {
                     e.printStackTrace();
                 }
             }).start();
+            new Thread().getState();
         }
         System.out.println("Demo.main");
     }
