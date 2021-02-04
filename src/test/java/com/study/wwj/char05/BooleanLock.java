@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class BooleanLock implements Lock {
     /**
-     * 存放哪些线程获取房当前锁时进入阻塞队列
+     * 存放哪些线程获取当前锁时进入阻塞队列
      */
     private final List<Thread> blockedList = new ArrayList<>();
     /**
@@ -22,6 +22,7 @@ public class BooleanLock implements Lock {
     private Thread currentThread;
     /**
      * false表示当前锁没有被任何线程获得
+     * true 表示该锁已经被某个线程获得,该线程就是 currentThread
      */
     private boolean locked = false;
 
@@ -34,6 +35,8 @@ public class BooleanLock implements Lock {
                 }
                 this.wait();
             }
+            //如果当前线程从未 进入阻塞队列，删除方法不会有任何赢影响。
+            //如果 当前线程是从wait set中被唤醒的，测需要从阻塞队列中间自己删除
             blockedList.remove(Thread.currentThread());
             this.locked = true;
             //记录获取锁的线程
@@ -47,6 +50,7 @@ public class BooleanLock implements Lock {
             if (mills <= 0) {
                 this.lock();
             } else {
+                //等待的毫秒数，最初由其他线程传入，但是在多次wait过程中会重新计算。
                 long remainingMills = mills;
                 long endMills = System.currentTimeMillis() + remainingMills;
                 while (locked) {
@@ -72,7 +76,7 @@ public class BooleanLock implements Lock {
         synchronized (this) {
             if (currentThread == Thread.currentThread()) {
                 this.locked = false;
-                Optional.of(currentThread.getName() + " releanse the lock")
+                Optional.of(currentThread.getName() + " release the lock")
                         .ifPresent(System.out::println);
                 this.notifyAll();
             }
@@ -81,6 +85,12 @@ public class BooleanLock implements Lock {
 
     @Override
     public List<Thread> getBlockedThreads() {
+        //如果直接返回 blockedList ，对我可以修改这个实例，不安全
         return Collections.unmodifiableList(blockedList);
+    }
+
+    @Override
+    public int getBlockedSize() {
+        return blockedList.size();
     }
 }

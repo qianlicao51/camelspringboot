@@ -35,4 +35,6 @@ public interface Lock {
      * @return
      */
     List<Thread> getBlockedThreads();
+
+    int getBlockedSize();
 }
