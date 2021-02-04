@@ -1,4 +1,4 @@
-package com.study.thread.wwj.char02;
+package com.study.wwj.char02;
 
 import java.util.stream.IntStream;
 
@@ -13,6 +13,7 @@ public class ThreadConstruction {
     public static void main(String[] args) {
         IntStream.range(0, 5).mapToObj(ThreadConstruction::createdThread)
                 .forEach(Thread::start);
+
     }
 
     private static Thread createdThread(final int intName) {

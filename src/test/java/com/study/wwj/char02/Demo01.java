@@ -1,4 +1,4 @@
-package com.study.thread.wwj.char02;
+package com.study.wwj.char02;
 
 import java.util.stream.IntStream;
 
