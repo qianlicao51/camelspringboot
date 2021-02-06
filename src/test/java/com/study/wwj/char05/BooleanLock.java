@@ -36,7 +36,7 @@ public class BooleanLock implements Lock {
                 this.wait();
             }
             //如果当前线程从未 进入阻塞队列，删除方法不会有任何赢影响。
-            //如果 当前线程是从wait set中被唤醒的，测需要从阻塞队列中间自己删除
+            //如果 当前线程是从 wait set 中被唤醒的，测需要从阻塞队列中间自己删除
             blockedList.remove(Thread.currentThread());
             this.locked = true;
             //记录获取锁的线程
@@ -67,7 +67,6 @@ public class BooleanLock implements Lock {
                 this.locked = true;
                 this.currentThread = Thread.currentThread();
             }
-
         }
     }
 
@@ -78,6 +77,7 @@ public class BooleanLock implements Lock {
                 this.locked = false;
                 Optional.of(currentThread.getName() + " release the lock")
                         .ifPresent(System.out::println);
+                //这里使用 notify也可以
                 this.notifyAll();
             }
         }
