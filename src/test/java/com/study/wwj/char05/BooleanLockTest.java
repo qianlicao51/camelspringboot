@@ -23,9 +23,7 @@ public class BooleanLockTest {
 
     private static void extracted(BooleanLockTest blt) {
         IntStream.range(0, 10)
-                .mapToObj(i -> new Thread(() -> {
-                    blt.syncMethod();
-                }))
+                .mapToObj(i -> new Thread(blt::syncMethod))
                 .forEach(Thread::start);
     }
 
