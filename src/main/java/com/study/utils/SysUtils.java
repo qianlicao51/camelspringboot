@@ -51,7 +51,6 @@ public class SysUtils {
 
     public static void main(String[] args) {
         System.out.println(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
-
         final String resourcePath = getResourcePath("routes/tcp.xml");
         System.out.println(resourcePath);
     }
