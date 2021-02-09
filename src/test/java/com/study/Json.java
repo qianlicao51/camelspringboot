@@ -63,8 +63,6 @@ public class Json {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     void synObj() {

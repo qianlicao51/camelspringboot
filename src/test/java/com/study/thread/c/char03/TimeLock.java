@@ -1,5 +1,6 @@
 package com.study.thread.c.char03;
 
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -17,6 +18,8 @@ public class TimeLock implements Runnable {
         final Thread t2 = new Thread(tl);
         t1.start();
         t2.start();
+
+        Executors.newFixedThreadPool(1);
     }
 
     @Override
