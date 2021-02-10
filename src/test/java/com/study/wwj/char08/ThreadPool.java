@@ -7,7 +7,7 @@ package com.study.wwj.char08;
  */
 public interface ThreadPool {
     /**
-     * 替吉奥你任务到线程池
+     * 提交任务到线程池
      */
     void execute(Runnable runnable);
 
@@ -23,6 +23,11 @@ public interface ThreadPool {
      */
     int getInitSize();
 
+    /**
+     * 获取线程最大核心线程数
+     * @return
+     */
+    int getCoreSize();
     /**
      * 获取线程池最大的线程数
      */
