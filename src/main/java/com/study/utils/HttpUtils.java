@@ -32,7 +32,7 @@ public class HttpUtils {
     /**
      * 请求超时时间
      */
-    private static final int TIME_OUT = 120000;
+    private static final int TIME_OUT = 12 * 10000;
 
     /**
      * Https请求
@@ -192,9 +192,13 @@ public class HttpUtils {
         jsonObject.put("name", "John_");
 
         final HashMap<String, String> hashMap = new HashMap<>(2);
-        hashMap.put("name", "grq");
-        final Response post = post("http://localhost:9090/conn/get", null, jsonObject.toJSONString(), hashMap);
+        hashMap.put("name", "grq测试");
+        final Response post = post("http://localhost:8080/gate/", null, jsonObject.toJSONString(), hashMap);
         System.out.println(post.body());
+        System.out.println(post.removeHeader("Content-Type"));
+        System.out.println(post.contentType());
+
+
     }
 
 
@@ -234,7 +238,7 @@ public class HttpUtils {
         connection.requestBody(jsonParams);
 
         /*Response response = connection.execute();*/
-        return connection.method(Method.POST).execute();
+        return connection.method(Method.POST).timeout(30 * 1000).execute();
     }
 
     /**

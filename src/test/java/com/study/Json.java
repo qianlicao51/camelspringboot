@@ -39,7 +39,6 @@ public class Json {
     }
 
     public static void main(String[] args) {
-
         // 打印:1
         System.out.println(POOL_END);
 

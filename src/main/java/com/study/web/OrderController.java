@@ -35,7 +35,7 @@ public class OrderController {
         return new DateTime().toString(DATE_YMDHMS);
     }
 
-    @GetMapping("/test")
+    @GetMapping(value = "/test", produces = {"text/html; charset=GBK"})
     public DeferredResult test(HttpServletRequest request, HttpServletResponse response) throws Exception {
         log.info("主线程开始");
         //随机生成8位的订单号

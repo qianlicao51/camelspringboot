@@ -106,7 +106,7 @@ public class HttpRequestUtils {
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("name", "测试");
         jsonParam.put("work", "工作");
-        httpPostForWrapCard("http://localhost:9090/conn/gettest", jsonParam);
+        httpPostForWrapCard("http://localhost:8080/gate/", jsonParam);
     }
 
     /**
@@ -136,7 +136,7 @@ public class HttpRequestUtils {
                 String str = "";
                 try {
                     //TODO 解决返回值中文乱码问题
-                    str = EntityUtils.toString(result.getEntity(), CHAT_UTF8);
+                    str = EntityUtils.toString(result.getEntity());
                     jsonResult = result.getStatusLine().getStatusCode();
                     System.out.println(str);
                 } catch (Exception e) {
