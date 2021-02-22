@@ -45,4 +45,11 @@ public class PostController {
         System.out.println(data);
         return map;
     }
+
+    @PostMapping("/gettest")
+    public Object post(@RequestBody String data) {
+        System.out.println(StringUtils.repeat("-*", 8));
+        System.out.println(data);
+        return map;
+    }
 }

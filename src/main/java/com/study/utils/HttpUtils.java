@@ -201,10 +201,9 @@ public class HttpUtils {
     /**
      * 执行post请求
      *
-     * @param url        请求URL地址
-     * @param headers    请求头
-     * @param jsonParams 请求JSON格式字符串参数
-     * @param paramMap   请求字符串参数集合
+     * @param url      请求URL地址
+     * @param headers  请求头
+     * @param paramMap 请求字符串参数集合
      * @return HTTP响应对象
      * @throws IOException 程序异常时抛出，由调用者处理
      */
@@ -291,7 +290,6 @@ public class HttpUtils {
             if (null != paramMap && !paramMap.isEmpty()) {
                 connection.data(paramMap);
             }
-
             return connection.execute();
         }
 
