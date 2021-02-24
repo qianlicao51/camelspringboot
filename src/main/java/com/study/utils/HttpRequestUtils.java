@@ -21,6 +21,7 @@ import java.net.URLDecoder;
  */
 @Slf4j
 public class HttpRequestUtils {
+    //StandardCharsets.UTF_8
     public static final String CHAT_UTF8 = "UTF-8";
 
     /**
