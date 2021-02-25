@@ -21,7 +21,9 @@ import java.net.URLDecoder;
  */
 @Slf4j
 public class HttpRequestUtils {
-    //StandardCharsets.UTF_8
+    /**
+     * StandardCharsets.UTF_8
+     */
     public static final String CHAT_UTF8 = "UTF-8";
 
     /**
@@ -70,7 +72,7 @@ public class HttpRequestUtils {
             HttpResponse result = httpClient.execute(method);
             url = URLDecoder.decode(url, CHAT_UTF8);
             /** 请求发送成功，并得到响应 **/
-            if (result.getStatusLine().getStatusCode() == 200) {
+            if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             }
         } catch (IOException e) {
             log.error("post请求提交失败:" + url, e);
@@ -133,8 +135,8 @@ public class HttpRequestUtils {
             HttpResponse result = httpClient.execute(method);
             url = URLDecoder.decode(url, CHAT_UTF8);
             /** 请求发送成功，并得到响应 **/
-            if (result.getStatusLine().getStatusCode() == 200) {
-                String str = "";
+            if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String str;
                 try {
                     //TODO 解决返回值中文乱码问题
                     str = EntityUtils.toString(result.getEntity());
@@ -207,7 +209,7 @@ public class HttpRequestUtils {
             HttpResponse result = httpClient.execute(method);
             url = URLDecoder.decode(url, CHAT_UTF8);
             /** 请求发送成功，并得到响应 **/
-            if (result.getStatusLine().getStatusCode() == 200) {
+            if (result.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String str = "";
                 try {
                     str = EntityUtils.toString(result.getEntity());
