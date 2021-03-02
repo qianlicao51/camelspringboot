@@ -1,11 +1,12 @@
 package com.study.code.code16;
 
-import com.study.utils.ConfigUtils;
 import com.study.utils.HexStrConver;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author study
@@ -13,9 +14,14 @@ import org.apache.mina.filter.codec.ProtocolDecoderOutput;
  * @date 2020/9/28 10:55
  */
 public class PrefixedStringSb16Decoder extends CumulativeProtocolDecoder {
-    private int prefixLength = 0;//定义报文转换预留字节长度
-    private int maxDataLength = 8192;//最大字节长度
-    private String encoding = "UTF-8";
+    private int prefixLength = 0;
+    //定义报文转换预留字节长度
+
+    private int maxDataLength = 8192;
+    //最大字节长度
+
+    private String encoding = StandardCharsets.UTF_8.name();
+
     private boolean lenthIncludeSelf = true;
 
     public int getPrefixLength() {
