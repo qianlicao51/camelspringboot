@@ -1,6 +1,9 @@
 package com.study.wwj.thread.char14.demo04;
 
 
+import java.net.Socket;
+import java.sql.Connection;
+
 /**
  * @author study
  * @version 1.0
@@ -8,10 +11,17 @@ package com.study.wwj.thread.char14.demo04;
  */
 //final 不允许被继承
 public final class Singleton {
-    private static Singleton instance = null;
+    private volatile static Singleton instance = null;
     private byte[] data = new byte[1024];
 
+    Connection conn;
+    Socket socket;
+
     private Singleton() {
+        //初始化 conn
+        // this.conn =
+        //初始化 socket
+        this.socket = new Socket();
     }
 
     public static Singleton getInstance() {
