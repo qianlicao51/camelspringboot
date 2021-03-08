@@ -7,7 +7,6 @@ package com.study.wwj.thread.char17;
  */
 public class ReadWriteLockTest {
     private final static String text = "Thisistheexampleforreadwritelock";
-
     public static void main(String[] args) {
         //    定义共享数据
         final ShareData shareData = new ShareData(50);
@@ -33,7 +32,6 @@ public class ReadWriteLockTest {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }).start();
         }

@@ -17,7 +17,6 @@ public interface ReadWriteLock {
 
     //创建reader 锁
     Lock readLock();
-
     //创建 write 锁
     Lock writeLock();
 

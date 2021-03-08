@@ -12,15 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class ShareData {
     //定义 共享数据(资源)
     private final List<Character> container = new ArrayList<>();
-
     //构造ReadWriterLock
     private final ReadWriteLock readWriteLock = ReadWriteLock.readWriteLock();
-
     //创建读锁
     private final Lock readLock = readWriteLock.readLock();
     //创建写入锁
     private final Lock writeLock = readWriteLock.writeLock();
-
     private final int length;
 
     public ShareData(int length) {
@@ -29,7 +26,6 @@ public class ShareData {
             container.add(i, 'c');
         }
     }
-
     public char[] read() throws InterruptedException {
         try {
             // 使用读锁
@@ -44,7 +40,6 @@ public class ShareData {
             readLock.unlock();
         }
     }
-
     public void write(char c) throws InterruptedException {
         try {
             //使用写锁
@@ -57,12 +52,10 @@ public class ShareData {
             writeLock.unlock();
         }
     }
-
     private void slowly() {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
         }
     }
-
 }

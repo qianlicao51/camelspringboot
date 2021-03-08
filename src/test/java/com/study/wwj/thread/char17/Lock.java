@@ -16,6 +16,4 @@ public interface Lock {
 
     //释放锁
     void unlock();
-
-
 }
