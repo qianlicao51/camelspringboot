@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class CamelspringbootApplicationTests {
@@ -41,6 +42,25 @@ class CamelspringbootApplicationTests {
         //5 查看管道批量操作的返回结果
         for (Object dateTime : list) {
             System.out.println(dateTime);
+        }
+    }
+
+    void transactionSet(Map<String, Object> commandList) {
+        //1.开启事务权限
+        redisTemplate.setEnableTransactionSupport(true);
+        try {
+            //2. 开启事务
+            redisTemplate.multi();
+            //3. 执行事务命令
+            for (Map.Entry<String, Object> entry : commandList.entrySet()) {
+                final String key = entry.getKey();
+                final Object value = entry.getValue();
+                redisTemplate.opsForValue().set(key, value.toString());
+            }
+            //4. 执行成功，提交事务
+            redisTemplate.exec();
+        } catch (Exception e) {
+            redisTemplate.discard();
         }
     }
 
