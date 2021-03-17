@@ -149,7 +149,6 @@ public class CompuetableDemo {
                 .thenCombine(CompletableFuture.supplyAsync(() -> " scala"),
                         //s1为第一个Future计算的结果，s2为第二个Future计算的结果
                         (s1, s2) -> s1 + s2);
-
         thenCombine.thenApply(String::toUpperCase)
                 .thenAccept(System.out::println);
     }
