@@ -126,9 +126,55 @@ public class CompuetableDemo {
         CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> 354, Executors.newCachedThreadPool());
     }
 
+
     void runAsync() {
         CompletableFuture.runAsync(() -> {
             System.out.println("async task .");
         });
     }
+
+    void thenCompose() {
+        //通过thenCompose将两个Future合并成一个Future
+        final CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Java")
+                //s 为上一个Future的计算结果
+                .thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " scala"));
+
+        //合并后的Future通过thenApply方法组成任务链
+        completableFuture.thenApply(String::toUpperCase)
+                .thenAccept(System.out::println);
+    }
+
+    void thenCombine() {
+        final CompletableFuture<String> thenCombine = CompletableFuture.supplyAsync(() -> "Java")
+                .thenCombine(CompletableFuture.supplyAsync(() -> " scala"),
+                        //s1为第一个Future计算的结果，s2为第二个Future计算的结果
+                        (s1, s2) -> s1 + s2);
+
+        thenCombine.thenApply(String::toUpperCase)
+                .thenAccept(System.out::println);
+    }
+
+    /**
+     * 多Future的并行计算
+     */
+    void allOf() throws ExecutionException, InterruptedException {
+        //定义三个CompletableFuture
+        final CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> "Java");
+        final CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> "Parallel");
+        final CompletableFuture<String> f3 = CompletableFuture.supplyAsync(() -> "Future");
+
+        //批量执行 ，返回值是一个 void 类型的CompletableFuture
+        final CompletableFuture<Void> future = CompletableFuture.allOf(f1, f2, f3).thenRun(() -> {
+            try {
+                System.out.println(f1.isDone() + " and result " + f1.get());
+                System.out.println(f2.isDone() + " and result " + f2.get());
+                System.out.println(f3.isDone() + " and result " + f3.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        //阻塞等待运行结束
+        future.get();
+    }
+
 }
