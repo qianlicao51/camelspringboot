@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * @date 2021/3/16 12:55
  */
 public class CompuetableDemo {
-    public static void main1(String[] args) {
+    public static void main1() {
         //double 类型的 CompletableFuture
         final CompletableFuture<Double> completableFuture = new CompletableFuture();
         //提交异步任务
