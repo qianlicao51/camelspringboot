@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicStampedReference;
 public class AtomicStampedReferenceDemo {
     public static void main(String[] args) {
         AtomicStampedReference<String> reference = new AtomicStampedReference<>("hello", 1);
-//失败
+        //失败
         assert reference.compareAndSet("hello", "world", 2, 3);
         assert reference.compareAndSet("hello", "world", 1, 2);
     }
