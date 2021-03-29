@@ -32,7 +32,8 @@ class CamelspringbootApplicationTests {
                     String key = "key_" + i;
                     String value = "value_" + i;
                     // connection.set(key.getBytes(StandardCharsets.UTF_8), value.getBytes(StandardCharsets.UTF_8));
-                    connection.get(key.getBytes(StandardCharsets.UTF_8));
+                    // connection.get(key.getBytes(StandardCharsets.UTF_8));
+                    connection.del(key.getBytes(StandardCharsets.UTF_8));
                 }
                 //3 返回结果,这里返回null
                 return null;
