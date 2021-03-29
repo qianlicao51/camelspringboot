@@ -38,7 +38,8 @@ public class Json {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        POOL_START.wait();
         // 打印:1
         System.out.println(POOL_END);
 
