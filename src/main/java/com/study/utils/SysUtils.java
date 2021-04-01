@@ -11,6 +11,8 @@ import java.net.URL;
 public class SysUtils {
 
     /**
+     * YYYY-MM-dd HH:mm:ss
+     *
      * @return YYYY-MM-dd HH:mm:ss
      */
     public static String getDate() {

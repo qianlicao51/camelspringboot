@@ -1,6 +1,5 @@
 package com.study;
 
-import com.study.utils.SysUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -20,37 +19,44 @@ public class ThreadLocalTest {
     ThreadLocal<String> threadLocal2 = new ThreadLocal<>();
     HashMap<String, String> hashMap = new HashMap<>();
 
-    public static void main(String[] args) {
-        final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 2, 3, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(1));
+    public static void main(String[] args) throws InterruptedException {
+        final int processors = Runtime.getRuntime().availableProcessors();
+        log.info("processors={}", processors);
+        final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, processors, 3, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(3));
 
-        poolExecutor.execute(() -> {
-            sleep();
-            System.out.println(Thread.currentThread().getName());
-        });
-        poolExecutor.execute(() -> {
-            sleep();
-            log.info(SysUtils.getDateYmd());
-        });
-        poolExecutor.execute(() -> {
-            sleep();
-            log.info(SysUtils.getDateYmd());
-        });
+        for (int i = 0; i < 3; i++) {
+            poolExecutor.execute(() -> {
+                sleep();
+            });
+        }
 
-        while (true) {
+
+        /*while (true) {
             log.info(poolExecutor.getQueue().size() + "|" + poolExecutor.getPoolSize());
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
             }
+        }*/
+        log.info("all task submit finished");
+        poolExecutor.shutdown();
+        //一般情况下会和shutdown方法组合使用|此处是为了阻塞，等到线程执行完毕在执行下面代码
+        if (!poolExecutor.awaitTermination(10, TimeUnit.SECONDS)) {
+            System.out.println("Some tasks were not terminated");
         }
+        log.info("poolExecutor is shutdown");
+        poolExecutor.shutdown();
     }
 
     static void sleep() {
         try {
-            TimeUnit.SECONDS.sleep(ThreadLocalRandom.current().nextInt(5));
+            log.info(Thread.currentThread().getName() + " start");
+            final int nextInt = ThreadLocalRandom.current().nextInt(2);
+            TimeUnit.SECONDS.sleep(nextInt);
+            log.info(Thread.currentThread().getName() + "<>en" + nextInt);
         } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
     }
 }
