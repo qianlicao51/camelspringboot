@@ -15,7 +15,6 @@ import java.util.List;
  */
 @Configuration
 public class Filter {
-
     @Bean("ioFilters")
     public List<IoFilter> ioFilters() {
         return Arrays.asList(new KeepAliveFilter());
