@@ -2,6 +2,9 @@ package com.study.utils;
 
 import org.joda.time.DateTime;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Locale;
 
@@ -40,6 +43,21 @@ public class DateUtils {
 
     public static void main(String[] args) {
         useCaseOne();
+        localDateCase();
     }
 
+    /**
+     * localDate获取一天开始和接受|来自尚硅谷电商 313 例子
+     */
+    private static void localDateCase() {
+        System.out.println("------------");
+        final LocalDate now = LocalDate.now();
+        final LocalTime midnight = LocalTime.MIDNIGHT;
+        final LocalTime min = LocalTime.MIN;
+        final LocalTime max = LocalTime.MAX;
+
+        System.out.println(LocalDateTime.of(now, min));
+        System.out.println(LocalDateTime.of(now, midnight));
+        System.out.println(LocalDateTime.of(now, max));
+    }
 }
