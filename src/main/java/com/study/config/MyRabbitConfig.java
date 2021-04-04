@@ -41,6 +41,21 @@ public class MyRabbitConfig {
      * # 只要消息抵达队列，以异步发送优先回调我们这个returnconfirm
      * spring.rabbitmq.template.mandatory=true
      * </code>
+     * 3 消费端确认(保证每个消息被正确消费，此时才可以broker删除这个消息)
+     * <code>
+     * ### 手动 ACK 消息
+     * spring.rabbitmq.listener.simple.acknowledge-mode=manual</code>
+     * <code>
+     * <span>
+     * 3.1 默认是自动确认的，只要消息接收到，客户端会自动确认，服务端就会移除这个消息
+     * 问题：宕机发生消息丢失
+     * 手动模式，消息一直是unacked状态，即使cosumer宕机，消息不会丢失，会重新变为ready，
+     * </span>
+     * 3.2 如何签收
+     * ----|channel.basicAck(deliveryTag, false);签收，业务成功完成
+     * ----|channel.basicNack(deliveryTag, false, true);拒签，业务失败
+     *
+     * </code>
      */
     @PostConstruct//对象创建完成后会调用
     public void initRabbitTemplate() {
@@ -68,7 +83,6 @@ public class MyRabbitConfig {
              */
             @Override
             public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-
                 System.out.println(String.format("Fail Message=%s==>replyCode=%s==>replyText=%s==>exchange=%s==>routingKey=%s"
                         , message, replyCode, replyText, exchange, routingKey));
             }

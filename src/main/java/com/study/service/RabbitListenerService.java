@@ -5,7 +5,10 @@ import com.study.bean.SendMsg;
 import com.study.bean.SendMsgDate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * @author MI
@@ -13,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @date 2021/4/3 21:01
  */
 @Service
-// @RabbitListener(queues = {"hello-java-queue"})
+@RabbitListener(queues = {"hello-java-queue"})
 public class RabbitListenerService {
     /**
      * 1 Message 原生消息，头+体(org.springframework.amqp.core.Message)
@@ -34,11 +37,26 @@ public class RabbitListenerService {
     }
 
     /**
-     * RabbitHandler 配合RabbitListener 使用，可以区分不同的消息。
+     * RabbitHandler 配合RabbitListener 使用，同一个队列 可以区分不同的消息。
      */
     @RabbitHandler
     public void receiveMsg2(Message msg, SendMsgDate sendMsg, Channel channel) throws InterruptedException {
         System.out.println("消息处理完成" + sendMsg);
+        //channel内 按照顺序自增
+        final long deliveryTag = msg.getMessageProperties().getDeliveryTag();
+        System.out.println("deliveryTag=" + deliveryTag);
+        //签收货物,非批量签收模式
+        try {
+            if (deliveryTag % 2 == 0) {
+                //签收
+                channel.basicAck(deliveryTag, false);
+            } else {
+                //退回|  requeue 如果应该重新排队被拒绝的消息
+                channel.basicNack(deliveryTag, false, true);
+            }
+        } catch (IOException e) {
+            //网络中断，签收状态发不出去
+        }
     }
 }
 
