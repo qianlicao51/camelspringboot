@@ -1,6 +1,7 @@
 package com.study.utils;
 
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,6 +40,9 @@ public class DateUtils {
         System.out.println(dt.withTimeAtStartOfDay().toString(FORMATE_FULL));
         System.out.println(dt.millisOfDay().withMaximumValue().toString(FORMATE_FULL));
 
+        final DateTime plusSeconds = dt.plusSeconds(2);
+        Duration duration = new Duration(dt, plusSeconds);
+        System.out.println("时间差是:" + duration.getStandardSeconds());
     }
 
     public static void main(String[] args) {
