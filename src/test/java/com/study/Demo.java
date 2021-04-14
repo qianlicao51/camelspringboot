@@ -1,5 +1,7 @@
 package com.study;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,11 +22,20 @@ public class Demo {
         x = 100;
     }
 
+    //默认值陷阱
+    public static Integer ageOfZhangSan;
+
     public static void main(String[] args) {
+        //李四的年龄与张三相同
+        // int ageOfLiSi = ageOfZhangSan;
+        // System.out.println("李四的年龄是：" + ageOfLiSi);
         //10
         System.out.println(x);
         final List<String> list = Arrays.asList("a", "v");
         final Set<List<String>> lists = Collections.singleton(list);
 
+        System.out.println(new Object().hashCode());
+        System.out.println(new Object().hashCode());
+        new HashCodeBuilder().append(ageOfZhangSan).toHashCode();
     }
 }
