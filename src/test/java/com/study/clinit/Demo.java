@@ -15,5 +15,16 @@ public class Demo {
         Class a = Class.forName(className, false, ClassLoader.getSystemClassLoader());
         final Class<?> aClass = ClassLoader.getSystemClassLoader().loadClass(className);
         System.out.println(aClass.getSimpleName());
+
+
+        System.out.println(encode(null));
+        System.out.println("end");
+
+    }
+
+    public static boolean encode(String str) {
+        assert str != null : "加密的字符串为null";
+        /*加密处理*/
+        return str == null;
     }
 }

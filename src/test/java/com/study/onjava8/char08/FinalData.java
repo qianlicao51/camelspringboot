@@ -8,20 +8,36 @@ import java.util.Random;
  * @date 2021/4/14 21:58
  */
 public class FinalData {
-    // Typical public constant:
-    public static final int VALUE_THREE = 39;
-    // connto be compile-time constants
-    public static final int VALUE_THREE = 39;
-    private static final int VALUE_TWO = 99;
     //https://lingcoder.github.io/OnJava8/#/book/08-Reuse?id=final%e5%85%b3%e9%94%ae%e5%ad%97
     private static Random rand = new Random(47);
-    private final int valueOne = 9;
     private String id;
 
     public FinalData(String id) {
         this.id = id;
     }
 
+    //Typical public constant
+    public static final int VALUE_THREE = 39;
+    static final int INT_5 = rand.nextInt(20);
+    private static final int VALUE_TWO = 99;
+    private static final Value VAL_3 = new Value(33);
+    //can be compile-time constants|编译时常量
+    private final int valueOne = 9;
+    // Cannot be compile-time constants:
+    private final int i4 = rand.nextInt(20);
+    private final Value v2 = new Value(22);
+    //Arrays
+    private final int[] a = {1, 2, 3, 4};
+    private Value v1 = new Value(1);
+
+    public static void main(String[] args) {
+
+    }
+
+    @Override
+    public String toString() {
+        return id + ": " + "i4 = " + i4 + ", INT_5 = " + INT_5;
+    }
     /**
      *不含参的构造函数每次都使用当前时间作为种子，随机性更强
      * https://blog.csdn.net/u011240877/article/details/52971166
