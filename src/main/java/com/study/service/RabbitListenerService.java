@@ -4,9 +4,6 @@ import com.rabbitmq.client.Channel;
 import com.study.bean.SendMsg;
 import com.study.bean.SendMsgDate;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -15,8 +12,8 @@ import java.io.IOException;
  * @version 1.0
  * @date 2021/4/3 21:01
  */
-@Service
-@RabbitListener(queues = {"hello-java-queue"})
+// @Service
+// @RabbitListener(queues = {"hello-java-queue"})
 public class RabbitListenerService {
     /**
      * 1 Message 原生消息，头+体(org.springframework.amqp.core.Message)
@@ -29,7 +26,7 @@ public class RabbitListenerService {
      * --2) 只有一个消息完全处理完，方法运行结束，才能接受下一个消息
      */
 
-    @RabbitHandler
+    // @RabbitHandler
     public void receiveMsg(Message msg, SendMsg sendMsg, Channel channel) throws InterruptedException {
         // 接受到消息(Body:'{"msg":"SendMsg","date":1617455823955}' MessageProperties [headers={__TypeId__=com.study.SendMsg}, contentType=application/json, contentEncoding=UTF-8, contentLength=0, receivedDeliveryMode=PERSISTENT, priority=0, redelivered=false, receivedExchange=hello-java-exchange, receivedRoutingKey=hello.java, deliveryTag=1, consumerTag=amq.ctag-lP8Uu5yaGfI3b8Uj9Z-BLA, consumerQueue=hello-java-queue])
         System.out.println(Thread.currentThread().getName() + "接受到消息" + msg.getMessageProperties());
@@ -39,7 +36,7 @@ public class RabbitListenerService {
     /**
      * RabbitHandler 配合RabbitListener 使用，同一个队列 可以区分不同的消息。
      */
-    @RabbitHandler
+    // @RabbitHandler
     public void receiveMsg2(Message msg, SendMsgDate sendMsg, Channel channel) throws InterruptedException {
         System.out.println("消息处理完成" + sendMsg);
         //channel内 按照顺序自增

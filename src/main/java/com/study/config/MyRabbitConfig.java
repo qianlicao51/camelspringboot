@@ -6,7 +6,6 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -15,7 +14,7 @@ import javax.annotation.PostConstruct;
  * @version 1.0
  * @date 2021/4/3 20:47
  */
-@Configuration
+// @Configuration
 public class MyRabbitConfig {
     @Autowired
     RabbitTemplate rabbitTemplate;

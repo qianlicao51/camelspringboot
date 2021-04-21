@@ -3,6 +3,7 @@ package com.study;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 
 /**
  * @author Administrator
@@ -17,8 +18,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * -- @RabbitListener 类和方法上
  * -- @RabbitHandler 方法上，重载区分不同的消息
  */
-// @SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
-@SpringBootApplication
+@SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
+// @SpringBootApplication
 @EnableRabbit
 public class CamelspringbootApplication {
     public static void main(String[] args) {

@@ -8,7 +8,6 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author MI
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/4/3 23:17
  */
 @Slf4j
-@RestController
-@RequestMapping("/mq")
+// @RestController
+// @RequestMapping("/mq")
 public class MQController {
     //交换机
     final String exchange = "hello-java-exchange";

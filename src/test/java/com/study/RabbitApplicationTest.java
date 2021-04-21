@@ -1,5 +1,6 @@
 package com.study;
 
+// import com.study.bean.SendMsg;
 import com.study.bean.SendMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
