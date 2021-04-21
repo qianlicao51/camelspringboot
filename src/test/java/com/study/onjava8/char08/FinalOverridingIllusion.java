@@ -47,5 +47,6 @@ public class FinalOverridingIllusion {
         // op.g();
         WithFinals wf = op2;
         // wf.f();
+        new Object();
     }
 }
