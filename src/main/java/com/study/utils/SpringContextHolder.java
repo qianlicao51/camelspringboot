@@ -1,4 +1,4 @@
-package com.study;
+package com.study.utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

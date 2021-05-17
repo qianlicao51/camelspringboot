@@ -11,7 +11,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public class FunctionExample {
     public static void main(String[] args) {
-        final Function<String, Integer> function = new Function<>() {
+        final Function<String, Integer> function = new Function<String, Integer>() {
             @Override
             public @Nullable Integer apply(@Nullable String input) {
                 Preconditions.checkNotNull(input, "输入不能为null");

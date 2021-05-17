@@ -1,5 +1,7 @@
 package com.study.jvm.char02;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 
 /**
@@ -10,10 +12,10 @@ import java.util.ArrayList;
  */
 public class HeapOOM {
     static class OOMObject {
-
     }
 
-    public static void main(String[] args) {
+    @Test
+    void heapOOm(){
         final ArrayList<OOMObject> list = new ArrayList<>();
         while (true) {
             list.add(new OOMObject());
