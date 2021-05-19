@@ -31,3 +31,5 @@ build/
 target
 .mvn
 .hprof
+.index
+java_pid*
