@@ -4,12 +4,16 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
+
 /**
  * @author MI
  * @version 1.0
  * @date 2021/4/13 15:36
  */
-public class A {
+public class A implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private static int num;
     private int a;
     private int b;
