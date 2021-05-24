@@ -15,15 +15,15 @@ import java.util.Map;
 //编写高质量代码：改善Java程序的151个建议
 //  在equals中使用getClass进行类型判断
 @Data
-class Person {
+class Personss {
     private String name;
-    private Person father;
+    private Personss father;
 
-    public Person(String name) {
+    public Personss(String name) {
         this.name = name;
     }
 
-    public Person(String name, Person father) {
+    public Personss(String name, Personss father) {
         this.name = name;
         this.father = father;
     }
@@ -46,19 +46,19 @@ public class Demo47 {
     public static void main(String[] args) {
 
         //person 类的实例作为Map的key
-        Map<Person, Object> map = new HashMap<>() {
+        Map<Personss, Object> map = new HashMap<>() {
             {
-                put(new Person("张三"), new Object());
+                put(new Personss("张三"), new Object());
             }
         };
 
-        List<Person> list = new ArrayList<>() {{
-            add(new Person("张三"));
+        List<Personss> list = new ArrayList<>() {{
+            add(new Personss("张三"));
         }};
 
-        System.out.println(list.contains(new Person("张三")));
-        System.out.println(map.containsKey(new Person("张三")));
-        System.out.println(new Person("张三").hashCode());
-        System.out.println(new Person("张三").hashCode());
+        System.out.println(list.contains(new Personss("张三")));
+        System.out.println(map.containsKey(new Personss("张三")));
+        System.out.println(new Personss("张三").hashCode());
+        System.out.println(new Personss("张三").hashCode());
     }
 }
