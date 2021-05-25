@@ -1,4 +1,4 @@
-package com.study.suggest151.char06;
+package com.study.suggest151.char05;
 
 import java.util.Arrays;
 import java.util.List;
