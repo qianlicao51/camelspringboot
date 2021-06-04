@@ -3,5 +3,6 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="myTestBean" class="com.study.book.springsource.char02.MyTestBean" init-method="init"></bean>
+    <bean id="hello" class="com.study.book.springsource.char05.Hello"></bean>
+    <bean id="test" class="com.study.book.springsource.char05.Test"></bean>
 </beans>

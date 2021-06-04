@@ -1,7 +1,6 @@
 package com.study.book.springsource.char02;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
@@ -16,10 +15,11 @@ public class BeanFactoryTest {
     @Test
     public void testSimpleLoad() {
         final ClassPathResource resource = new ClassPathResource("beanFactoryTest.xml");
-        final BeanFactory bf = new XmlBeanFactory(resource);
+        final XmlBeanFactory bf = new XmlBeanFactory(resource);
         final MyTestBean myTestBean = (MyTestBean) bf.getBean("myTestBean");
         assertEquals("testStr", myTestBean.getTestStr());
-        
+        System.out.println(myTestBean);
+
 
     }
 }

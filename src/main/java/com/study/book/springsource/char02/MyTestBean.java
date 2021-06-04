@@ -15,4 +15,10 @@ public class MyTestBean {
     public void setTestStr(String testStr) {
         this.testStr = testStr;
     }
+
+    public void init() {
+        System.out.println("MyTestBean.init");
+        System.out.println(this);
+        System.out.println("MyTestBean.init");
+    }
 }
