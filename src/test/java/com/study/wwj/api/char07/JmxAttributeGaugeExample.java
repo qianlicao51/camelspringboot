@@ -4,6 +4,8 @@ import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.jvm.JmxAttributeGauge;
 
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,10 +19,18 @@ public class JmxAttributeGaugeExample {
             .convertDurationsTo(TimeUnit.MINUTES)
             .convertDurationsTo(TimeUnit.MINUTES).build();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedObjectNameException, InterruptedException {
         reporter.start(10, TimeUnit.SECONDS);
 
-        metricRegistry.register(MetricRegistry.name(JmxAttributeGaugeExample.class, "Heap Memory"), new JmxAttributeGauge())
+        // 注册 JmxAttributeGauge 主要输出堆内存使用情况
+        metricRegistry.register(MetricRegistry.name(JmxAttributeGaugeExample.class, "Heap Memory"),
+                new JmxAttributeGauge(new ObjectName("java.lang:type=Memory"), "HeapMemoryUsage"));
 
+        //注册 JmxAttributeGauge 主要输出非堆内存的使用情况
+        metricRegistry.register(MetricRegistry.name(JmxAttributeGaugeExample.class, "NonHeapMemoryUsage"),
+                new JmxAttributeGauge(new ObjectName("java.lang:type=Memory"), "NonHeapMemoryUsage"));
+
+        // 目的是不让主线程退出
+        Thread.currentThread().join();
     }
 }
