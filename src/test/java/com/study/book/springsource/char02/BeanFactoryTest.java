@@ -17,6 +17,7 @@ public class BeanFactoryTest {
         final ClassPathResource resource = new ClassPathResource("beanFactoryTest.xml");
         final XmlBeanFactory bf = new XmlBeanFactory(resource);
         final MyTestBean myTestBean = (MyTestBean) bf.getBean("myTestBean");
+        final MyTestBean bean = bf.getBean(MyTestBean.class);
         assertEquals("testStr", myTestBean.getTestStr());
         System.out.println(myTestBean);
 
