@@ -3,6 +3,7 @@ package com.study.wwj.api.char07;
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.jvm.JmxAttributeGauge;
+import org.junit.jupiter.api.Test;
 
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
@@ -19,7 +20,8 @@ public class JmxAttributeGaugeExample {
             .convertDurationsTo(TimeUnit.MINUTES)
             .convertDurationsTo(TimeUnit.MINUTES).build();
 
-    public static void main(String[] args) throws MalformedObjectNameException, InterruptedException {
+    @Test
+    public void start() throws MalformedObjectNameException, InterruptedException {
         reporter.start(10, TimeUnit.SECONDS);
 
         // 注册 JmxAttributeGauge 主要输出堆内存使用情况

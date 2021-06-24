@@ -3,6 +3,7 @@ package com.study.wwj.api.char07;
 import com.codahale.metrics.CachedGauge;
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.MetricRegistry;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,9 +18,9 @@ public class CachedGaugeExample {
             .convertDurationsTo(TimeUnit.MINUTES)
             .convertDurationsTo(TimeUnit.MINUTES).build();
 
-    public static void main(String[] args) throws InterruptedException {
+    @Test
+    public void start() throws InterruptedException {
         reporter.start(10, TimeUnit.SECONDS);
-
         registry.gauge("cached-db-size", () -> new CachedGauge<Long>(30, TimeUnit.SECONDS) {
             @Override
             protected Long loadValue() {

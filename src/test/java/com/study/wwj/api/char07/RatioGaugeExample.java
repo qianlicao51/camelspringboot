@@ -4,6 +4,7 @@ import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.RatioGauge;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +23,8 @@ public class RatioGaugeExample {
     private final static Meter totalMeter = new Meter();
     private final static Meter successMeter = new Meter();
 
-    public static void main(String[] args) {
+    @Test
+    public void start() {
         reporter.start(10, TimeUnit.SECONDS);
         registry.gauge("success-rate", () -> new RatioGauge() {
             @Override
