@@ -15,7 +15,7 @@ import java.util.Collection;
  */
 public class Cmd {
     public static void main(String[] args) {
-        final Collection<File> files = FileUtils.listFiles(new File("C:\\迅雷下载\\A-MD0091-白佳萱-素人搭訕3街頭巧遇極品騷貨 -白佳萱"),
+        final Collection<File> files = FileUtils.listFiles(new File(""),
                 new String[]{"mp4", "m4v", "TS"}, false);
 
         files.forEach(file -> {
