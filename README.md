@@ -8,5 +8,8 @@ nohup java -jar -Dspring.profiles.active=test springboot-demo.jar &
 
 ![image-20210109115011322](pic/image-20210109115011322.png)
 
+删除源码 java -jar execJar-0.0.1-SNAPSHOT.jar -d {spring-*-source.jar目录}
+
+
 
 
