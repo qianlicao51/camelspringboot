@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class Demo01 {
     String foundPerson(String[] people) {
-        for (int i = 0; i < people.length; i++) {
-            if (people[i].equals("Don")) {
+        for (String person : people) {
+            if ("Don".equals(person)) {
                 return "Don";
             }
-            if (people[i].equals("John")) {
+            if ("John".equals(person)) {
                 return "John";
             }
-            if (people[i].equals("Kent")) {
+            if ("Kent".equals(person)) {
                 return "Kent";
             }
         }
@@ -25,7 +25,7 @@ public class Demo01 {
     }
 
     String foundPersonNew(String[] people) {
-        List<String> candidates = Arrays.asList(new String[]{"Don", "John", "Kent"});
+        List<String> candidates = Arrays.asList("Don", "John", "Kent");
         for (String person : people) {
             if (candidates.contains(person)) {
                 return person;
