@@ -41,7 +41,7 @@ public class LocalDateTest {
 
     @Test
     public void adjuster() {
-// import static java.time.temporal.TemporalAdjusters.*;
+        // import static java.time.temporal.TemporalAdjusters.*;
         LocalDate date1 = LocalDate.of(2021, 9, 7);
         LocalDate date2 = date1.with(nextOrSame(DayOfWeek.SUNDAY));//2021-09-12
         LocalDate date3 = date2.with(lastDayOfMonth());//2021-09-30
@@ -50,7 +50,7 @@ public class LocalDateTest {
     }
 
     @Test
-    public void printFormat(){
+    public void printFormat() {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     }
